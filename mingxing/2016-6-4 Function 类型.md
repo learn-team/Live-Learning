@@ -47,3 +47,47 @@
 而以上代码之所以会在运行期间产生错误，原因在于函数位于一个初始化语句中，而不是一个函数声明。换句话说，在执行到函数所在的语句之前，变量 fnSum2 中不会保存有对函数的引用；而且，由于第一行代码就会导致 "Uncaught TypeError" ( 意外的标示符 )错误，实际上也不会执行到下一行。
 
 *除了什么时候可以通过变量访问函数这一点区别之外，函数声明与函数表达式的语法其实是等价的*
+
+####作为值的函数
+
+因为 ECMAScript 中的函数名本身就是变量，所以函数也可以作为值来使用，如引用类型 Array sort 方法：
+
+    var data = [1,2,3,4,24,24,23,42,23,45,67,23,456,65]
+    data.sort( compare );
+    function compare( a, b ){
+        if( a < b ){
+            return -1;
+        }else if( a > b ){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
+当然也可以从一个函数中返回另一个函数，如下一种极有用的方法：
+
+
+    var data = [{
+        name: 'Zachary',
+        age: 28   
+    },{
+        name: 'Nicholas',
+        age: 29   
+    }]
+    function compare( propertyName ){
+        return function( object1, object2){
+            var value1 = object1[ propertyName ];
+            var value2 = object2[ propertyName ];
+            if( value1 < value2 ){
+                return -1;
+            }else if( value1 > value2 ){
+                return 1;
+            }else{
+                return 0;
+            }
+        }
+    }
+    data.sort( compare( 'name' ) ); //Nicholas
+    data.sort( compare( 'age' ) ); //Zachary
+
+
