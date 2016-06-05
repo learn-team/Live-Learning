@@ -139,3 +139,28 @@ ECMAScript 5 还规范化了另一个函数对象属性：caller，这个属性�
     
 *为了加强 JS 这门语言的安全性，让第三方代码不能在相同的环境里窥视其它代码。所以在严格模式下 callee、caller 均会报错*
 
+ ####函数属性和方法
+ 
+ 每个函数都包含 length 和 prototype 这两个属性，其中 length 表示函数希望接收的命名参数个数：
+ 
+    function sum( num1, num2){
+        return num1 + num2;
+    }
+
+以上函数中 sum.length 等于 2。而 prototype 是保存所有实例方法的真正所在，诸如 toString() 和 valueOf() 等方法实际上都是保存在这个属性中。而 prototype 属性是不可以枚举的，因此使用 for-in 无法发现。
+
+每个函数也都包含两个非继承而来的方法：apply() 和 call()。 这两个方法的用途都是在特定的作用域中调用函数，实际上等于设置函数体内 this 对象的值，如下面实例：
+
+    window.color = 'red';
+    var o = {color: 'blue' };
+    function fnColor(){
+        console.log( this.color );
+    }
+    fnColor.call( this );   //'red'
+    fnColor.call( window );   //'red'
+    fnColor.call( o );   //'blue'
+    
+函数 fnColor 是作为全局定义的，因此 this.color 会转换为是对 window.color 求值，而 fnColor.call( this ) 和 fnColor.call( window ) 则只是两种显式地在全局作用域求值的方式，结果当然就是 'red'，但 fnColor.call( o )不同，函数的执行环境发生了改变，this 被指向了 o，于是结果就是 'blue'。
+
+*使用 call 、 apply 来扩充作用域的最大好处，就是对象不需要与方法有任何耦合关系。*
+
