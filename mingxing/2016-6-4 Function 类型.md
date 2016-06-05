@@ -114,5 +114,14 @@
         }
     }
     
-在这个重写后的 compare 函数的函数体内，没有在引用函数名。这样无论引用函数时使用的什么名字，都可以保证正常完成递归调用。
+在这个重写后的 compare 函数的函数体内，没有在引用函数名。这样无论引用函数时使用的什么名字，都可以保证正常完成递归调用。如：
+
+    var trueCompare = compare;
+    compare = function(){
+        return 0;
+    }
+    trueCompare( 5 );   //120
+    conpare( 5 );//     0
+    
+在此变量 trueCompare 获得 compare 的值，
     
