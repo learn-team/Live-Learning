@@ -123,5 +123,19 @@
     trueCompare( 5 );   //120
     conpare( 5 );//     0
     
-在此变量 trueCompare 获得 compare 的值，
+在此变量 trueCompare 获得 compare 的值， 实际上是在另一个位置上保存了函数的指针。如果按照原来函数名得写法这里 trueCompare 就会返回 0，所以使用 callee 就不会出现那样的问题。
     
+函数中另外一个特殊的值是 this，与 Java 和 C# 类似，this 引用的是函数执行环境的对象，或者可以说是 this 的值。[ 114 ]
+
+ECMAScript 5 还规范化了另一个函数对象属性：caller，这个属性保存着 `调用当前函数` 的函数引用，比如是在全局作用域中它的值为 null：
+
+    function outer(){
+        inner();
+    }
+    function inner(){
+        console.log( arguments.callee.caller );
+    }
+    outer();
+    
+*为了加强 JS 这门语言的安全性，让第三方代码不能在相同的环境里窥视其它代码。所以在严格模式下 callee、caller 均会报错*
+
