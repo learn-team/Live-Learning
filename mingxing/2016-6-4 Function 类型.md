@@ -90,4 +90,29 @@
     data.sort( compare( 'name' ) ); //Nicholas
     data.sort( compare( 'age' ) ); //Zachary
 
+####函数内部属性
 
+函数内部有两个特殊的对象：arguments 和 this，其中 arguments 除了是保存函数的参数另外还有一个名为 callee 的属性，该属性是一个指向拥有这个 arguments 对象的函数的指针。 如下是一个非常经典的阶乘函数：
+    
+    console.log( compare( 5 ) ); //120
+    function compare( num ){
+        if( num <= 1 ){
+            return 1;
+        }else{
+            return num * compare( --num );
+        }
+    }
+    
+通常定义阶乘函数会用到递归。以上的函数名是固定的，所以在这种情景之下没有什么不对。但问题是函数内部使用的 compare 名和函数本身紧密耦合在一起，为了清除这种问题，可以将函数改造如下方式：
+
+    console.log( compare( 5 ) ); //120
+    function compare( num ){
+        if( num <= 1 ){
+            return 1;
+        }else{
+            return num * arguments.callee( --num );
+        }
+    }
+    
+在这个重写后的 compare 函数的函数体内，没有在引用函数名。这样无论引用函数时使用的什么名字，都可以保证正常完成递归调用。
+    
