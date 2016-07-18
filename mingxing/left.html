@@ -3,3 +3,12 @@
         left
     </body>
 </html>
+<script>
+    var a = window.open( './right-right.html' );
+    setTimeout(function(){
+        a.resiziTo( 100, 100)
+    },1000)
+    setTimeout(function(){
+        a.close();
+    },3000)
+</script>

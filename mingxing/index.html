@@ -1,12 +1,15 @@
 <html>
-    <frameset rows="90,*" >
-        <frame src="./top.html" name="top" >
-        <frameset cols="20%,80%" >
-            <frame src="./left.html" name="left" >
-            <frame src="./right.html" name="right" >
-        </frameset>
-    </frameset>
     <script>
+        var vArray = [{name:'秦'}, '彤', '彤', false, 22];
+        for( var x in vArray ){
+            console.log( vArray[x] )
+        }
+        for( var i = 0, len = vArray.length; i < len; i++ ){
+            console.log( vArray[i] )
+        }
+        for( var i = 0; i < vArray.length; i++ ){
+            console.log( vArray[i] )
+        }
         
     </script>
 </html>
