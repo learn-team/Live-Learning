@@ -1,3 +1,27 @@
+##自定义函数
+
+####less
+
+        .border-radius (@radius) {
+            border-radius: @radius;
+            -moz-border-radius: @radius;
+            -webkit-border-radius: @radius;
+        }
+        #header {
+            .border-radius(4px);
+        }
+        
+####sass
+
+        @mixin border-radius(@radius) {
+            border-radius: @radius;
+            -moz-border-radius: @radius;
+            -webkit-border-radius: @radius;
+        }
+        #header {
+                @include border-radius(4px);
+        }
+
 ##变量声明
 
 ####less
@@ -13,7 +37,7 @@
 ####less
 
 因为 less “按需加载”（lazy loaded）的，因此不必强制在使用之前声明，如下  是有效的：
-  
+
     lazy-eval {
         width: @var;
     }
