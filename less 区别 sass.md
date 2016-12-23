@@ -1,16 +1,17 @@
 ##继承类
-  .class {
-    color: red;
-  }
+
+    .class {
+      color: red;
+    }
   
 ####less
   
-  h1{
-    .class;
-  }
-  
+    h1{
+      .class;
+    }
+
 ####sass
 
-  h1{
-    @extend .class;
-  }
+    h1{
+      @extend .class;
+    }
