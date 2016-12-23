@@ -13,10 +13,10 @@
         
 ####sass
 
-        @mixin border-radius(@radius) {
-            border-radius: @radius;
-            -moz-border-radius: @radius;
-            -webkit-border-radius: @radius;
+        @mixin border-radius($radius) {
+            border-radius: $radius;
+            -moz-border-radius: $radius;
+            -webkit-border-radius: $radius;
         }
         #header {
            @include border-radius(4px);
@@ -26,11 +26,11 @@
 
 ####less
         
-        $var: red;
+        @var: red;
         
 ####sass
 
-        @var: red;
+        $var: red;
         
 ##变量作用域
 
