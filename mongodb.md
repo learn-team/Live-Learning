@@ -17,3 +17,8 @@
 查看所有数据库
 
     show dbs
+
+删除数据库
+
+     use runoob     进入数据库
+     db.dropDatabase()    删除数据库
